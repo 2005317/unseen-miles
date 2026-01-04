@@ -1,489 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="assets/images/logocm.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wexplore — India Reimagined</title>
+    <title>UNSEEN MILES — India Reimagined</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        :root {
-            --bg-color: #ffffff;
-            --secondary-bg: #f5f5f7;
-            --text-color: #1d1d1f;
-            --secondary-text: #86868b;
-            --accent-color: #0071e3;
-            --card-bg: #ffffff;
-            --border-color: rgba(0,0,0,0.1);
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            
-            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            --border-radius: 22px;
-            --max-width: 1200px;
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #000000;
-            --secondary-bg: #1c1c1e;
-            --text-color: #f5f5f7;
-            --secondary-text: #a1a1a6;
-            --accent-color: #0a84ff;
-            --card-bg: #1c1c1e;
-            --border-color: rgba(255,255,255,0.1);
-            --glass-bg: rgba(0, 0, 0, 0.85);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.5;
-            transition: background-color 0.5s ease;
-            overflow-x: hidden;
-        }
-
-        /* --- Navigation --- */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: 64px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .nav-content {
-            width: 100%;
-            max-width: var(--max-width);
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 24px;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            gap: 10px;
-            color: var(--text-color);
-            z-index: 1100;
-        }
-
-        .logo-icon {
-            font-size: 1.4rem;
-            color: var(--accent-color);
-        }
-
-        .logo-text {
-            font-weight: 700;
-            font-size: 1.25rem;
-            letter-spacing: -0.04em;
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 28px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-size: 0.85rem;
-            font-weight: 500;
-            opacity: 0.7;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover { opacity: 1; }
-
-        .theme-toggle {
-            background: var(--secondary-bg);
-            border: none;
-            color: var(--text-color);
-            cursor: pointer;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            z-index: 1100;
-        }
-
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            width: 30px;
-            height: 20px;
-            position: relative;
-            z-index: 1100;
-        }
-
-        .mobile-toggle span {
-            display: block;
-            width: 100%;
-            height: 2px;
-            background: var(--text-color);
-            position: absolute;
-            transition: var(--transition);
-        }
-
-        .mobile-toggle span:nth-child(1) { top: 0; }
-        .mobile-toggle span:nth-child(2) { top: 9px; }
-        .mobile-toggle span:nth-child(3) { top: 18px; }
-
-        .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg); top: 9px; }
-        .mobile-toggle.active span:nth-child(2) { opacity: 0; }
-        .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg); top: 9px; }
-
-        /* --- Advanced Cinematic Slideshow --- */
-        .hero {
-            position: relative;
-            height: 100vh;
-            width: 100%;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .slides-container {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1;
-        }
-
-        .slide {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0;
-            background-size: cover;
-            background-position: center;
-            transition: opacity 2s ease-in-out;
-            transform: scale(1.1);
-        }
-
-        .slide.active {
-            opacity: 1;
-            transform: scale(1);
-            transition: opacity 2s ease-in-out, transform 12s linear;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
-            z-index: 2;
-        }
-
-        .hero-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 3;
-            color: white;
-            text-align: center;
-            width: 90%;
-            max-width: 1000px;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 5.5rem);
-            font-weight: 800;
-            letter-spacing: -0.05em;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s forwards 0.3s;
-        }
-
-        .hero p {
-            font-size: clamp(1.1rem, 3vw, 1.5rem);
-            margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s forwards 0.5s;
-        }
-
-        .hero-indicators {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 12px;
-            z-index: 4;
-            flex-wrap: wrap;
-            justify-content: center;
-            max-width: 80%;
-        }
-
-        .indicator {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.3);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .indicator.active {
-            background: white;
-            width: 30px;
-            border-radius: 5px;
-        }
-
-        /* --- Section Styling --- */
-        section {
-            padding: 100px 24px;
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: clamp(2rem, 5vw, 3.2rem);
-            margin-bottom: 15px;
-            letter-spacing: -0.04em;
-        }
-
-        /* --- Cards Architecture --- */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-            cursor: pointer;
-            position: relative;
-        }
-
-        .card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
-
-        .card-img-wrap { height: 260px; overflow: hidden; }
-        .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s ease; }
-        .card:hover .card-img { transform: scale(1.1); }
-
-        .card-body { padding: 28px; }
-        .card-tag { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--accent-color); margin-bottom: 10px; display: block; }
-        .card h3 { font-size: 1.4rem; margin-bottom: 5px; }
-
-        .card-overlay-btn {
-            position: absolute;
-            bottom: 28px;
-            right: 28px;
-            width: 40px;
-            height: 40px;
-            background: var(--accent-color);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: var(--transition);
-        }
-
-        .card:hover .card-overlay-btn { opacity: 1; transform: translateY(0); }
-
-        /* --- Pricing Architecture --- */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .price-card {
-            background: var(--secondary-bg);
-            padding: 40px;
-            border-radius: 28px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .price-card.featured {
-            background: var(--text-color);
-            color: var(--bg-color);
-            transform: scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-
-        .price-val { 
-            font-size: 2.2rem; 
-            font-weight: 800; 
-            margin: 20px 0; 
-            letter-spacing: -0.02em;
-        }
-        
-        .price-features { list-style: none; margin: 25px 0; text-align: left; }
-        .price-features li { padding: 12px 0; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; }
-
-        /* Buttons */
-        .btn {
-            padding: 16px 36px;
-            border-radius: 980px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary { background: var(--accent-color); color: white; }
-        .btn-secondary { background: rgba(0,0,0,0.05); color: var(--text-color); }
-        .btn-glass { background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: white; border: 1px solid rgba(255,255,255,0.2); }
-
-        /* --- Planner --- */
-        .planner-box {
-            background: var(--secondary-bg);
-            padding: 60px;
-            border-radius: 32px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-            text-align: left;
-        }
-
-        .input-group label { display: block; margin-bottom: 10px; font-weight: 600; font-size: 0.9rem; }
-        .input-group input, .input-group select { width: 100%; padding: 18px; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-color); font-size: 1.1rem; outline: none; transition: var(--transition); }
-        .input-group input:focus { border-color: var(--accent-color); box-shadow: 0 0 0 4px rgba(0,113,227,0.1); }
-
-        .planner-result {
-            display: none;
-            margin-top: 50px;
-            text-align: left;
-            padding: 40px;
-            background: var(--card-bg);
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .planner-result.show {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .result-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .result-column h4 {
-            color: var(--accent-color);
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .result-column p { font-size: 1.05rem; line-height: 1.6; }
-
-        /* --- Reveal & Animations --- */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* --- Footer --- */
-        footer { padding: 80px 24px; background: var(--secondary-bg); text-align: center; border-top: 1px solid var(--border-color); }
-
-        @media (max-width: 900px) {
-            .mobile-toggle { display: block; }
-            .nav-links {
-                position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
-                background: var(--bg-color); flex-direction: column; justify-content: center;
-                gap: 40px; padding: 40px; transition: var(--transition); z-index: 1050;
-            }
-            .nav-links.active { right: 0; }
-            .nav-links a { font-size: 2rem; font-weight: 700; opacity: 1; }
-            .price-card.featured { transform: scale(1); }
-            .planner-box { padding: 40px 20px; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body data-theme="light">
 
     <nav>
         <div class="nav-content">
             <a href="#" class="logo-container">
-                <img height="50px" width="50px" src="assets/images/airplane-ticket-svgrepo-com.svg" alt="">
+                <img height="60px" width="50px" src="assets/images/logocm.png" alt="">
                 <span class="logo-text">Unseen MILES</span>
             </a>
             
             <div class="nav-actions">
                 <div class="nav-links" id="navLinks">
-                    <a href="#destinations" onclick="toggleMobileMenu()">Destinations</a>
-                    <a href="#pricing" onclick="toggleMobileMenu()">Packages</a>
-                    <a href="#planner" onclick="toggleMobileMenu()">Planner</a>
+                    <a href="#unseenmiles-planner-root">Planner</a>
+                    <a href="#destinations">Destinations</a>
+                    <a href="#pricing">Packages</a>
+                    <a href="login.html">Login</a>
+                    
                 </div>
 
                 <button class="theme-toggle" id="themeToggle" title="Toggle Mode">
                     <i class="fa-solid fa-moon" id="themeIcon"></i>
                 </button>
 
-                <button class="mobile-toggle" id="mobileToggle" onclick="toggleMobileMenu()">
+                <button class="mobile-toggle" id="mobileToggle">
                     <span></span><span></span><span></span>
                 </button>
             </div>
@@ -497,76 +47,145 @@
             <h1 id="heroTitle">India, Reimagined.</h1>
             <p id="heroSub">Explore mystical landscapes from Himalayan peaks to tropical shores.</p>
             <div class="hero-actions">
-                <a href="#destinations" class="btn btn-primary">Plan Journey</a>
-                <a href="#destinations" class="btn btn-glass" style="margin-left:12px;">Collections</a>
+                <a href="#unseenmiles-planner-root" class="btn btn-primary">Plan Journey</a>
+                <a href="#destinations" class="btn btn-glass" >Collections</a>
             </div>
         </div>
         <div class="hero-indicators" id="heroIndicators"></div>
     </header>
 
     <!-- Pricing Section -->
+     <!-- Self-Contained Wexplore Planner Component -->
+<div id="unseenmiles-planner-root" class="btn-glass planner-container">
     
+    <h2 class="planner-title">
+        Select Your Destination
+    </h2>
+    
+    <p class="planner-subtitle">
+        Choose a city from our curated collection to explore its famous places and culinary icons.
+    </p>
+    
+    <div class="planner-form-container">
+        
+        <!-- Dropdown Container -->
+        <div class="dropdown-container">
+            <select id="citySelect"
+                class="city-select">
+                
+                <option value="" disabled selected>Where would you like to go?</option>
+                <option value="goa">Goa — The Tropical Pearl</option>
+                <option value="delhi">New Delhi — The Capital Grandeur</option>
+                <option value="jaipur">Jaipur — The Royal Pink City</option>
+                <option value="kolkata">Kolkata — The City of Joy</option>
+                <option value="varanasi">Varanasi — The Eternal Soul</option>
+                <option value="bangalore">Bangalore — The Garden Hub</option>
+            </select>
+            
+            <!-- Custom Dropdown Arrow (FontAwesome required in parent) -->
+            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+        </div>
 
-    <!-- Destinations -->
+        <!-- Exploration Button -->
+        <button id="exploreBtn" 
+            onclick="navigateToCity()"
+            class="explore-button">
+            Begin Exploration
+        </button>
+    </div>
+
+    <script>
+        /**
+         * Navigation Logic
+         * Redirects the user based on the dropdown selection.
+         */
+        function navigateToCity() {
+            const select = document.getElementById('citySelect');
+            const value = select.value;
+            
+            if (!value) {
+                // Inline modal or fallback logic can be added here
+                alert("Please select a destination first.");
+                return;
+            }
+
+            const fileMap = {
+                "goa": "goa.html",
+                "delhi": "delhi.html",
+                "jaipur": "jaipur.html",
+                "kolkata": "kolkata.html",
+                "varanasi": "varanasi.html",
+                "bangalore": "bangalore.html"
+            };
+
+            const destinationPage = fileMap[value];
+            if (destinationPage) {
+                window.location.href = destinationPage;
+            }
+        }
+    </script>
+</div>
+
+            
     <section id="destinations" class="reveal">
         <div class="section-header">
             <h2>The Collection</h2>
             <p>Click a destination to explore its hidden gems and iconic flavors instantly.</p>
         </div>
         <div class="card-grid">
-            <div class="card" onclick="generateSmartPlan('Goa')">
+            <div class="card" data-city="Goa">
                 <div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1512757776214-26d36777b513?q=80&w=800&auto=format&fit=crop" class="card-img" alt="Goa"></div>
                 <div class="card-body">
                     <span class="card-tag">Coastal</span>
                     <h3>Goa</h3>
-                    <p style="color:var(--secondary-text)">The spirit of freedom.</p>
+                    <p class="card-subtitle">The spirit of freedom.</p>
                 </div>
                <a href="goa.html"><div class="card-overlay-btn">  <i class="fa-solid fa-arrow-right"></i></div>
             </div></a> 
-            <div class="card" onclick="generateSmartPlan('Delhi')">
+            <div class="card" data-city="Delhi">
                 <div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=800&auto=format&fit=crop" class="card-img" alt="Delhi"></div>
                 <div class="card-body">
                     <span class="card-tag">Capital</span>
                     <h3>New Delhi</h3>
-                    <p style="color:var(--secondary-text)">Heart of the nation.</p>
+                    <p class="card-subtitle">Heart of the nation.</p>
                 </div>
                 <a href="delhi.html"><div class="card-overlay-btn"><i class="fa-solid fa-arrow-right"></i></div></a>
             </div>
-            <div class="card" onclick="generateSmartPlan('Jaipur')">
+            <div class="card" data-city="Jaipur">
                 <div class="card-img-wrap"><img src="https://i.pinimg.com/1200x/c7/44/33/c74433ba4704c5e4fde79e93638f8bbb.jpg" class="card-img" alt="Jaipur"></div>
                 <div class="card-body">
                     <span class="card-tag">Heritage</span>
                     <h3>Jaipur</h3>
-                    <p style="color:var(--secondary-text)">The Pink City.</p>
+                    <p class="card-subtitle">The Pink City.</p>
                 </div>
-                <div class="card-overlay-btn"><i class="fa-solid fa-arrow-right"></i></div>
+                <a href="jaipur.html"><div class="card-overlay-btn"><i class="fa-solid fa-arrow-right"></i></div></a>
             </div>
-            <div class="card" onclick="generateSmartPlan('Kolkata')">
+            <div class="card" data-city="Kolkata">
                 <div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1558431382-27e303142255?q=80&w=800&auto=format&fit=crop" class="card-img" alt="Kolkata"></div>
                 <div class="card-body">
                     <span class="card-tag">Culture</span>
                     <h3>Kolkata</h3>
-                    <p style="color:var(--secondary-text)">City of Joy.</p>
+                    <p class="card-subtitle">City of Joy.</p>
                 </div>
-                <div class="card-overlay-btn"><i class="fa-solid fa-arrow-right"></i></div>
+                <a href="kolkata.html"><div class="card-overlay-btn"><i class="fa-solid fa-arrow-right"></i></div></a>
             </div>
-            <div class="card" onclick="generateSmartPlan('Bangalore')">
+            <div class="card" data-city="Bangalore">
                 <div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?q=80&w=800&auto=format&fit=crop" class="card-img" alt="Bangalore"></div>
                 <div class="card-body">
                     <span class="card-tag">Tech Hub</span>
                     <h3>Bangalore</h3>
-                    <p style="color:var(--secondary-text)">The Garden City.</p>
+                    <p class="card-subtitle">The Garden City.</p>
                 </div>
-                <div class="card-overlay-btn"><i class="fa-solid fa-arrow-right"></i></div>
+                <a href="bangalore.html"><div class="card-overlay-btn"><i class="fa-solid fa-arrow-right"></i></div></a>
             </div>
-            <div class="card" onclick="generateSmartPlan('Varanasi')">
+            <div class="card" data-city="Varanasi">
                 <div class="card-img-wrap"><img src="https://i.pinimg.com/1200x/82/18/7d/82187d39f4dc4ec89ad717a05788ff58.jpg" class="card-img" alt="Varanasi"></div>
                 <div class="card-body">
                     <span class="card-tag">Spiritual</span>
                     <h3>Varanasi</h3>
-                    <p style="color:var(--secondary-text)">Eternal Holy City.</p>
+                    <p class="card-subtitle">Eternal Holy City.</p>
                 </div>
-                <div class="card-overlay-btn"><i class="fa-solid fa-arrow-right"></i></div>
+                <a href="varanasi.html"><div class="card-overlay-btn"><i class="fa-solid fa-arrow-right"></i></div></a>
             </div>
         </div>
     </section>
@@ -582,242 +201,101 @@
             <div class="price-card">
                 <span class="card-tag">Lite</span>
                 <h3>Yatri</h3>
-                <div class="price-val">₹9,999 - ₹39,999</div>
+                <div class="price-val">₹999 - ₹3,999</div>
                 <ul class="price-features">
                     <li><i class="fa-solid fa-check"></i> 4-Day Digital Itinerary</li>
                     <li><i class="fa-solid fa-check"></i> Inter-city Transit Support</li>
                     <li><i class="fa-solid fa-check"></i> 24/7 Digital Concierge</li>
                 </ul>
-                <a href="#" class="btn btn-secondary" style="width: 100%; border-radius:15px;">Choose Lite</a>
+                <a href="lite.html" class="btn btn-secondary btn-choose-lite">Choose Lite</a>
             </div>
             <div class="price-card featured">
-                <span class="card-tag" style="color: var(--accent-color)">Signature</span>
+                <span class="card-tag featured-tag">Signature</span>
                 <h3>Maharaja</h3>
-                <div class="price-val">₹1,49,999 - ₹2,99,999</div>
+                <div class="price-val">₹14,999 - ₹29,999</div>
                 <ul class="price-features">
                     <li><i class="fa-solid fa-crown"></i> 8-Day Luxury Circuit</li>
                     <li><i class="fa-solid fa-check"></i> Heritage Palace Stays</li>
                     <li><i class="fa-solid fa-check"></i> Private Local Guides</li>
                     <li><i class="fa-solid fa-check"></i> Royal Fine Dining</li>
                 </ul>
-                <a href="#" class="btn btn-primary" style="width: 100%;">Book Maharaja</a>
+                <a href="signature.html" class="btn btn-primary btn-book-maharaja">Book Maharaja</a>
             </div>
             <div class="price-card">
                 <span class="card-tag">Elite</span>
                 <h3>Nawab</h3>
-                <div class="price-val">₹4,99,999 - ₹9,99,999</div>
+                <div class="price-val">₹49,999 - ₹99,999</div>
                 <ul class="price-features">
                     <li><i class="fa-solid fa-star"></i> 15-Day Bespoke Passage</li>
                     <li><i class="fa-solid fa-check"></i> Chartered Local Flights</li>
                     <li><i class="fa-solid fa-check"></i> Personal Butler & Staff</li>
                     <li><i class="fa-solid fa-check"></i> 24/7 Priority Concierge</li>
                 </ul>
-                <a href="#" class="btn btn-secondary" style="width: 100%; border-radius:15px;">Enquire Now</a>
+                <a href="elite.html" class="btn btn-secondary btn-enquire-now">Enquire Now</a>
             </div>
         </div>
     </section>
-    <footer>
-        <div class="logo-container" style="justify-content: center; margin-bottom: 15px;">
-            <i class="fa-solid fa-compass logo-icon"></i>
-            <span class="logo-text">Wexplore</span>
+    <!-- Self-Contained Wexplore Footer Component -->
+<!-- 
+  INSTRUCTIONS: 
+  1. Copy this entire block.
+  2. Replace the existing <footer> tag in your pages with this code.
+  3. Ensure your global CSS contains --bg-color, --text-color, etc., for the theme to work.
+-->
+
+<footer id="wexplore-footer">
+    <div class="footer-grid">
+        <!-- Brand Info -->
+        <div class="footer-column">
+            <a href="index.html" class="footer-logo">
+                <img height="60px" width="50px" src="assets/images/logocm.png" alt="Logo" class="footer-logo-img">
+                <span>Unseen MILES</span>
+            </a>
+            <p class="footer-subtitle">
+                India Reimagined. Curating soulful journeys across the subcontinent for the modern, conscious explorer.
+            </p>
         </div>
-        <p style="color: var(--secondary-text); font-size: 0.9rem;">&copy; 2024 Wexplore Travel Co. · Crafted in Bharat.</p>
-    </footer>
 
-    <script>
-       const slides = [
-            { image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=2000&auto=format&fit=crop", title: "Wexplore Himachal", subtitle: "Serenity amidst the snow-capped peaks." },
-            { image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?q=80&w=2000&auto=format&fit=crop", title: "Kerala Backwaters", subtitle: "Lush emerald valleys and calm waters." },
-            { image: "https://i.pinimg.com/1200x/31/26/05/3126050a050e7f2cb656bb9f3bfd2030.jpg", title: "Royal Rajasthan", subtitle: "A legacy of history etched in gold and stone." },
-            { image: "https://i.pinimg.com/1200x/e9/1a/b6/e91ab6d60ffd80c74e6364c96f293a84.jpg", title: "The Taj Mahal", subtitle: "An eternal monument to marble love." },
-            { image: "https://i.pinimg.com/1200x/82/18/7d/82187d39f4dc4ec89ad717a05788ff58.jpg", title: "Varanasi Ghats", subtitle: "The spiritual soul and ancient heartbeat of India." },
-            { image: "https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?q=80&w=2000&auto=format&fit=crop", title: "Ladakh Deserts", subtitle: "High-altitude journeys beyond the clouds." },
-            { image: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?q=80&w=2000&auto=format&fit=crop", title: "Ancient Hampi", subtitle: "Walking through the ruins of an empire." },
-            { image: "https://images.unsplash.com/photo-1500614922032-b6dd337b1313?q=80&w=2000&auto=format&fit=crop", title: "Misty Meghalaya", subtitle: "Nature in its rawest, most emerald form." },
-            { image: "https://cdn.abhibus.com/2024/02/Things-to-Do-in-Jaisalmer.jpg", title: "Jaisalmer Dunes", subtitle: "Golden sunsets in the heart of the Great Indian Desert." }
-        ];
+        <!-- Sitemap -->
+        <div class="footer-column">
+            <h4>Destinations</h4>
+            <ul class="footer-links">
+                <li><a href="goa.html">Goa</a></li>
+                <li><a href="kolkata.html">Kolkata</a></li>
+                <li><a href="bangalore.html">Bangalore</a></li>
+                <li><a href="varanasi.html">Varanasi</a></li>
+                <li><a href="rajasthan.html">Rajasthan</a></li>
+                <li><a href="delhi.html">Delhi</a></li>
+            </ul>
+        </div>
 
-        // Database for the Intelligent Planner
-        const cityData = {
-            "delhi": {
-                visit: "Lotus Temple, Qutub Minar, Humayun's Tomb, and a walk through Old Delhi's bustling markets.",
-                eat: "Paranthe Wali Gali for heritage flavors, Bademiya for kebabs, and Indian Accent for a modern gourmet touch."
-            },
-            "jaipur": {
-                visit: "Amer Fort (Amber Palace), Hawa Mahal (Palace of Winds), City Palace, and Jantar Mantar observatory.",
-                eat: "Rawat Mishtan Bhandar for Pyaz Kachori, Laxmi Mishtan Bhandar (LMB) for Thali, and Chokhi Dhani for cultural dining."
-            },
-            "goa": {
-                visit: "Baga Beach, Basilica of Bom Jesus, Dudhsagar Falls, and the vibrant Anjuna Flea Market.",
-                eat: "Britto’s at Baga, Fisherman’s Wharf for seafood, and Thalassa for Greek vibes with a stunning sunset."
-            },
-            "mumbai": {
-                visit: "Gateway of India, Marine Drive at dusk, Elephanta Caves, and the historic Colaba Causeway.",
-                eat: "Leopold Cafe for history, Britannia & Co for Parsi Berry Pulao, and Kyani & Co. for Irani chai and bun-maska."
-            },
-            "udaipur": {
-                visit: "City Palace complex, Lake Pichola boat ride, Jag Mandir, and Saheliyon-ki-Bari gardens.",
-                eat: "Ambrai for lakeside fine dining, Natraj for authentic Rajasthani Thali, and Upre by 1559 AD for roof-top views."
-            },
-            "darjeeling": {
-                visit: "Tiger Hill for sunrise, Batasia Loop, Peace Pagoda, and a ride on the Himalayan Toy Train.",
-                eat: "Glenary’s for bakery items and history, Keventer's for a traditional English breakfast, and Shangri-La."
-            },
-            "varanasi": {
-                visit: "Dashashwamedh Ghat for Ganga Aarti, Kashi Vishwanath Temple, and a sunrise boat ride on the Ganges.",
-                eat: "Deena Chat Bhandar for Tamatar Chaat, Blue Lassi Shop for 80+ lassi varieties, and Shree Shivay for Thali."
-            },
-            "munnar": {
-                visit: "Eravikulam National Park, Mattupetty Dam, Tea Museum, and Top Station for panoramic views.",
-                eat: "Saravana Bhavan for South Indian staples, Rapsy Restaurant for Spanish-style omlettes, and local tea-stall snacks."
-            },
-            "kolkata": {
-                visit: "Victoria Memorial, Howrah Bridge, Mother House, and the Indian Museum.",
-                eat: "Arsalan for Kolkata Biryani, Peter Cat for Chelo Kebab, and Flurys on Park Street for high tea and cakes."
-            },
-            "bangalore": {
-                visit: "Lalbagh Botanical Garden, Bangalore Palace, Cubbon Park, and Bannerghatta National Park.",
-                eat: "MTR (Mavalli Tiffin Rooms) for Rava Idli, Vidyarthi Bhavan for Dosa, and Toit Brewpub for craft beer."
-            },
-            "hyderabad": {
-                visit: "Charminar, Golconda Fort, Salar Jung Museum, and Ramoji Film City.",
-                eat: "Paradise Biryani for the iconic Hyderabadi flavor, Bawarchi for kebabs, and Nimrah Cafe for Irani Chai near Charminar."
-            },
-            "chennai": {
-                visit: "Marina Beach, Kapaleeshwarar Temple, Fort St. George, and the Government Museum.",
-                eat: "Saravana Bhavan for authentic breakfast, Murugan Idli Shop, and Dakshin for fine South Indian dining."
-            },
-            "kochi": {
-                visit: "Chinese Fishing Nets, Mattancherry Palace, Jew Town, and St. Francis Church.",
-                eat: "Kashi Art Cafe for bohemian vibes, Fort Kochi Seafood, and Paragon for legendary Malabar cuisine."
-            },
-            "amritsar": {
-                visit: "The Golden Temple (Harmandir Sahib), Jallianwala Bagh, and the Wagah Border Ceremony.",
-                eat: "Kesar Da Dhaba for iconic Dal Makhani, Beera Chicken House, and Giani Tea Stall for early morning chai."
-            },
-            "pondicherry": {
-                visit: "Promenade Beach, Auroville (Matrimandir), French Quarter streets, and Paradise Beach.",
-                eat: "Cafe Des Arts for French breakfast, Coromandel Cafe, and Villa Shanti for refined Indo-French dining."
-            },
-            "hampi": {
-                visit: "Virupaksha Temple, Vitthala Temple (Stone Chariot), Hemakuta Hill, and the Royal Enclosure.",
-                eat: "Mango Tree for local South Indian meals, Laughing Buddha for riverside chill, and Gopi Guest House."
-            }
-        };
+        <!-- Direct Contact -->
+        <div class="footer-column">
+            <h4>Connect</h4>
+            <ul class="footer-links">
+                <li><a href="mailto:dp2005317@gmail.com"><i class="fa-solid fa-envelope"></i> dp2005317@gmail.com</a></li>
+                <li><a href="https://wa.me/917888739942" target="_blank"><i class="fa-brands fa-whatsapp"></i> +91 78887 39942</a></li>
+            </ul>
+        </div>
 
-        let currentSlide = 0;
-        const slidesContainer = document.getElementById('slidesContainer');
-        const indicatorsContainer = document.getElementById('heroIndicators');
-        const heroTitle = document.getElementById('heroTitle');
-        const heroSub = document.getElementById('heroSub');
+        <!-- Membership Action -->
+        <div class="footer-column">
+            <h4>Full Guide</h4>
+            <div class="footer-membership-card">
+                <p>Unlock exclusive itineraries, local secrets, and concierge support.</p>
+                <a href="index.html#pricing" class="footer-btn-pkg">Take Membership</a>
+            </div>
+        </div>
+    </div>
 
-        function initSlideshow() {
-            slides.forEach((slide, index) => {
-                const slideEl = document.createElement('div');
-                slideEl.className = `slide ${index === 0 ? 'active' : ''}`;
-                slideEl.style.backgroundImage = `url(${slide.image})`;
-                slidesContainer.appendChild(slideEl);
-                const indicator = document.createElement('div');
-                indicator.className = `indicator ${index === 0 ? 'active' : ''}`;
-                indicator.onclick = () => goToSlide(index);
-                indicatorsContainer.appendChild(indicator);
-            });
-            setInterval(() => goToSlide((currentSlide + 1) % slides.length), 7000);
-        }
-
-        function goToSlide(index) {
-            if (index === currentSlide) return;
-            const allSlides = document.querySelectorAll('.slide');
-            const allIndicators = document.querySelectorAll('.indicator');
-            allSlides[currentSlide].classList.remove('active');
-            allIndicators[currentSlide].classList.remove('active');
-            currentSlide = index;
-            allSlides[currentSlide].classList.add('active');
-            allIndicators[currentSlide].classList.add('active');
-            heroTitle.style.opacity = '0';
-            heroSub.style.opacity = '0';
-            setTimeout(() => {
-                heroTitle.innerText = slides[currentSlide].title;
-                heroSub.innerText = slides[currentSlide].subtitle;
-                heroTitle.style.opacity = '1';
-                heroSub.style.opacity = '1';
-            }, 600);
-        }
-
-        function toggleMobileMenu() {
-            const toggle = document.getElementById('mobileToggle');
-            const links = document.getElementById('navLinks');
-            const isActive = links.classList.toggle('active');
-            toggle.classList.toggle('active');
-            document.body.style.overflow = isActive ? 'hidden' : 'auto';
-        }
-
-        const themeBtn = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        themeBtn.addEventListener('click', () => {
-            const current = document.body.getAttribute('data-theme');
-            const next = current === 'light' ? 'dark' : 'light';
-            document.body.setAttribute('data-theme', next);
-            themeIcon.className = next === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-        });
-
-        // --- Improved Intelligent Planner Logic ---
-        function generateSmartPlan(selectedCity = null) {
-            const plannerSection = document.getElementById('planner');
-            const cityInput = document.getElementById('plannerCity');
-            
-            // If triggered from a card, update input and scroll
-            if (selectedCity) {
-                cityInput.value = selectedCity;
-                plannerSection.scrollIntoView({ behavior: 'smooth' });
-            }
-
-            const cityValue = cityInput.value.trim().toLowerCase();
-            const vibe = document.getElementById('vibeInput').value;
-            const res = document.getElementById('plannerResult');
-            
-            const title = document.getElementById('resultTitle');
-            const vibeTxt = document.getElementById('vibeText');
-            const visit = document.getElementById('visitList');
-            const eat = document.getElementById('eatList');
-
-            const vibeMessages = {
-                luxury: "The Royal Passage: A journey defined by heritage palaces, fine silks, and private audiences.",
-                local: "The Soul Connection: Immersive walks through markets, home-stays, and spiritual centers.",
-                fast: "The Urban Pulse: High-energy skyscrapers, transit-hubs, and tech-forward social spaces."
-            };
-
-            // Reset and show loading state
-            res.classList.remove('show');
-            res.style.display = 'block';
-            title.innerText = "Curating your journey...";
-            
-            setTimeout(() => {
-                const data = cityData[cityValue] || cityData[Object.keys(cityData).find(k => cityValue.includes(k))];
-                
-                if (data) {
-                    title.innerText = "Discover " + (cityValue.charAt(0).toUpperCase() + cityValue.slice(1));
-                    vibeTxt.innerText = vibeMessages[vibe];
-                    visit.innerText = data.visit;
-                    eat.innerText = data.eat;
-                } else {
-                    title.innerText = cityValue ? "Exploring " + cityValue : "Exploring India";
-                    vibeTxt.innerText = vibeMessages[vibe];
-                    visit.innerText = "Start by visiting the local historic square and the main city garden. Ask locals for hidden temples or galleries.";
-                    eat.innerText = "Look for 'Thali' houses for an authentic variety, or check the oldest bakery in the central district.";
-                }
-                
-                // Slide in animation
-                res.classList.add('show');
-            }, 600);
-        }
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        window.onload = initSlideshow;
-    </script>
+    <div class="footer-bottom">
+        <div>&copy; 2025 Unless MINDS Travel Company. All rights reserved.</div>
+        <div class="footer-bottom-links">
+            <a href="#" class="footer-bottom-link">Privacy</a>
+            <a href="#" class="footer-bottom-link">Terms</a>
+        </div>
+    </div>
+</footer>
+    <script src="script.js"></script>
 </body>
 </html>

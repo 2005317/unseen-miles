@@ -1,0 +1,28 @@
+{
+  "name": "codemittens",
+  "version": "1.0.0",
+  "description": "PS5<br>a traveller arrives in a new city with no local contacts and limited time. findiing places, food, transport, and hidden spots becomes overwhelming create a travel guide website that helps user plan trips, explore destinations, and discover local experiences effortlessly<br>",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2005317/CODEMITTENS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/2005317/CODEMITTENS/issues"
+  },
+  "homepage": "https://github.com/2005317/CODEMITTENS#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-session": "^1.18.2",
+    "mongoose": "^9.0.2",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
+  }
+}

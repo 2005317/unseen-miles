@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="assets/images/logocm.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Goa Guide — Wexplore</title>
@@ -120,7 +121,7 @@
         .hero-bg {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-clip: url('https://images.unsplash.com/photo-1512757776214-26d36777b513?q=80&w=2000&auto=format&fit=crop');
+            background-image: url('https://images.unsplash.com/photo-1512757776214-26d36777b513?q=80&w=2000&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             z-index: -1;
@@ -282,7 +283,7 @@
     <nav>
         <div class="nav-content">
             <a href="index.html" class="logo">
-                <i class="fa-solid fa-compass"></i>
+                <img height="60px" width="50px" src="assets/images/logocm.png" alt="">
                 <span>Unseen Miles</span>
             </a>
             <button class="theme-toggle" id="themeToggle">
@@ -300,6 +301,165 @@
             <p>The tropical soul of India, where heritage meets the horizon.</p>
         </div>
     </header>
+    <!-- Self-Contained Wexplore Roadmap Component (Theme-Aware - Goa Edition with Maps) -->
+<div id="wexplore-roadmap-root" style="
+    --roadmap-bg: #ffffff;
+    --roadmap-text: #1d1d1f;
+    --roadmap-subtext: #86868b;
+    --roadmap-accent: #0071e3;
+    --roadmap-border: rgba(0,0,0,0.1);
+    --roadmap-card-bg: #ffffff;
+    --roadmap-tag-bg: #f5f5f7;
+    
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+    max-width: 900px; 
+    margin: 60px auto; 
+    padding: 40px 20px;
+    background-color: var(--roadmap-bg);
+    border-radius: 40px;
+    transition: all 0.5s ease;
+">
+    
+    <style>
+        /* Theme Switching Logic */
+        [data-theme="dark"] #wexplore-roadmap-root {
+            --roadmap-bg: #000000;
+            --roadmap-text: #f5f5f7;
+            --roadmap-subtext: #a1a1a6;
+            --roadmap-accent: #0a84ff;
+            --roadmap-border: rgba(255,255,255,0.1);
+            --roadmap-card-bg: #1c1c1e;
+            --roadmap-tag-bg: #2c2c2e;
+        }
+
+        /* Smooth Hover Transitions */
+        .roadmap-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        .roadmap-card:hover {
+            transform: translateX(10px) !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+            border-color: var(--roadmap-accent) !important;
+        }
+        [data-theme="dark"] .roadmap-card:hover {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4) !important;
+        }
+
+        /* Map Link Styling */
+        .map-tag {
+            text-decoration: none;
+            display: inline-block;
+            background: var(--roadmap-tag-bg);
+            color: var(--roadmap-text);
+            font-size: 0.75rem;
+            padding: 6px 14px;
+            border-radius: 980px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .map-tag:hover {
+            background: var(--roadmap-accent);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+        .map-tag i {
+            margin-right: 4px;
+            font-size: 0.7rem;
+            opacity: 0.8;
+        }
+    </style>
+    
+    <!-- Section Header -->
+    <div style="text-align: center; margin-bottom: 60px;">
+        <h2 style="font-size: 2.8rem; letter-spacing: -0.04em; font-weight: 700; margin-bottom: 15px; color: var(--roadmap-text);">
+            The 5-Day Roadmap: Goa
+        </h2>
+        <p style="color: var(--roadmap-subtext); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6;">
+            A perfectly balanced journey through the tropical heart of India. Click on the locations below to find them on Google Maps.
+        </p>
+    </div>
+
+    <!-- Timeline Container -->
+    <div style="position: relative;">
+        <!-- Vertical Line -->
+        <div style="position: absolute; left: 20px; top: 0; bottom: 0; width: 2px; background: var(--roadmap-border); z-index: 0;"></div>
+        
+        <!-- Day 1 -->
+        <div style="position: relative; padding-left: 60px; margin-bottom: 40px; z-index: 1;">
+            <div style="position: absolute; left: 12px; top: 8px; width: 18px; height: 18px; background: var(--roadmap-accent); border-radius: 50%; border: 4px solid var(--roadmap-bg); box-shadow: 0 0 0 1px var(--roadmap-border);"></div>
+            <div class="roadmap-card" style="background: var(--roadmap-card-bg); padding: 32px; border-radius: 22px; border: 1px solid var(--roadmap-border);">
+                <span style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--roadmap-accent); letter-spacing: 0.15em; margin-bottom: 8px; display: block;">Day 01</span>
+                <h3 style="font-size: 1.4rem; font-weight: 700; margin: 0 0 12px 0; color: var(--roadmap-text);">Coastal Arrival & North Goa Pulse</h3>
+                <p style="color: var(--roadmap-subtext); font-size: 0.95rem; line-height: 1.6; margin: 0 0 15px 0;">Arrive in the vibrant North. Settle into your boutique stay before catching a legendary sunset and exploring the high-energy beach shacks.</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Baga+Beach+Goa" target="_blank" class="map-tag"><i class="fa-solid fa-location-dot"></i> Baga Beach</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Calangute+Beach+Goa" target="_blank" class="map-tag"><i class="fa-solid fa-location-dot"></i> Calangute</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Tito's+Lane+Goa" target="_blank" class="map-tag"><i class="fa-solid fa-location-dot"></i> Tito's Lane</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div style="position: relative; padding-left: 60px; margin-bottom: 40px; z-index: 1;">
+            <div style="position: absolute; left: 12px; top: 8px; width: 18px; height: 18px; background: var(--roadmap-accent); border-radius: 50%; border: 4px solid var(--roadmap-bg); box-shadow: 0 0 0 1px var(--roadmap-border);"></div>
+            <div class="roadmap-card" style="background: var(--roadmap-card-bg); padding: 32px; border-radius: 22px; border: 1px solid var(--roadmap-border);">
+                <span style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--roadmap-accent); letter-spacing: 0.15em; margin-bottom: 8px; display: block;">Day 02</span>
+                <h3 style="font-size: 1.4rem; font-weight: 700; margin: 0 0 12px 0; color: var(--roadmap-text);">Latin Quarters & Old Goa Heritage</h3>
+                <p style="color: var(--roadmap-subtext); font-size: 0.95rem; line-height: 1.6; margin: 0 0 15px 0;">Step into the Portuguese era. Wander the colorful streets of Fontainhas followed by the spiritual silence of Old Goa's ancient cathedrals.</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Fontainhas+Panjim+Goa" target="_blank" class="map-tag"><i class="fa-solid fa-location-dot"></i> Fontainhas</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Basilica+of+Bom+Jesus+Goa" target="_blank" class="map-tag"><i class="fa-solid fa-location-dot"></i> Basilica of Bom Jesus</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Panjim+City+Goa" target="_blank" class="map-tag"><i class="fa-solid fa-location-dot"></i> Panjim</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div style="position: relative; padding-left: 60px; margin-bottom: 40px; z-index: 1;">
+            <div style="position: absolute; left: 12px; top: 8px; width: 18px; height: 18px; background: var(--roadmap-accent); border-radius: 50%; border: 4px solid var(--roadmap-bg); box-shadow: 0 0 0 1px var(--roadmap-border);"></div>
+            <div class="roadmap-card" style="background: var(--roadmap-card-bg); padding: 32px; border-radius: 22px; border: 1px solid var(--roadmap-border);">
+                <span style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--roadmap-accent); letter-spacing: 0.15em; margin-bottom: 8px; display: block;">Day 03</span>
+                <h3 style="font-size: 1.4rem; font-weight: 700; margin: 0 0 12px 0; color: var(--roadmap-text);">Nature’s Majesty: Dudhsagar Falls</h3>
+                <p style="color: var(--roadmap-subtext); font-size: 0.95rem; line-height: 1.6; margin: 0 0 15px 0;">A day for the wild. Journey through the Bhagwan Mahavir Sanctuary to witness the spectacular "Sea of Milk" cascading down the Western Ghats.</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Dudhsagar+Falls+Goa" target="_blank" class="map-tag"><i class="fa-solid fa-location-dot"></i> Dudhsagar Falls</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Mollem+National+Park+Goa" target="_blank" class="map-tag"><i class="fa-solid fa-location-dot"></i> Mollem National Park</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 4 -->
+        <div style="position: relative; padding-left: 60px; margin-bottom: 40px; z-index: 1;">
+            <div style="position: absolute; left: 12px; top: 8px; width: 18px; height: 18px; background: var(--roadmap-accent); border-radius: 50%; border: 4px solid var(--roadmap-bg); box-shadow: 0 0 0 1px var(--roadmap-border);"></div>
+            <div class="roadmap-card" style="background: var(--roadmap-card-bg); padding: 32px; border-radius: 22px; border: 1px solid var(--roadmap-border);">
+                <span style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--roadmap-accent); letter-spacing: 0.15em; margin-bottom: 8px; display: block;">Day 04</span>
+                <h3 style="font-size: 1.4rem; font-weight: 700; margin: 0 0 12px 0; color: var(--roadmap-text);">South Goa Serenity & White Sands</h3>
+                <p style="color: var(--roadmap-subtext); font-size: 0.95rem; line-height: 1.6; margin: 0 0 15px 0;">Escape to the quiet side. Relax on pristine crescent-shaped beaches, enjoy quiet backwater kayaking, and dine under the starlit sky.</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Palolem+Beach+Goa" target="_blank" class="map-tag"><i class="fa-solid fa-location-dot"></i> Palolem Beach</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Agonda+Beach+Goa" target="_blank" class="map-tag"><i class="fa-solid fa-location-dot"></i> Agonda</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Cabo+de+Rama+Fort+Goa" target="_blank" class="map-tag"><i class="fa-solid fa-location-dot"></i> Cabo de Rama</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 5 -->
+        <div style="position: relative; padding-left: 60px; margin-bottom: 0; z-index: 1;">
+            <div style="position: absolute; left: 12px; top: 8px; width: 18px; height: 18px; background: var(--roadmap-accent); border-radius: 50%; border: 4px solid var(--roadmap-bg); box-shadow: 0 0 0 1px var(--roadmap-border);"></div>
+            <div class="roadmap-card" style="background: var(--roadmap-card-bg); padding: 32px; border-radius: 22px; border: 1px solid var(--roadmap-border);">
+                <span style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--roadmap-accent); letter-spacing: 0.15em; margin-bottom: 8px; display: block;">Day 05</span>
+                <h3 style="font-size: 1.4rem; font-weight: 700; margin: 0 0 12px 0; color: var(--roadmap-text);">Artisanal Markets & Cliffside Farewells</h3>
+                <p style="color: var(--roadmap-subtext); font-size: 0.95rem; line-height: 1.6; margin: 0 0 15px 0;">Final day for souvenir shopping and bohemian vibes. End your journey with fine Greek dining on the cliffs overlooking the Arabian Sea.</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Anjuna+Flea+Market+Goa" target="_blank" class="map-tag"><i class="fa-solid fa-location-dot"></i> Anjuna Flea Market</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Vagator+Cliff+Goa" target="_blank" class="map-tag"><i class="fa-solid fa-location-dot"></i> Vagator Cliffs</a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Thalassa+Vagator+Goa" target="_blank" class="map-tag"><i class="fa-solid fa-utensils"></i> Thalassa</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- Famous Places to Go -->
     <section class="reveal">
@@ -342,17 +502,6 @@
                 </div>
             </div>
             <!-- Place 4 -->
-            <div class="card">
-                <div class="card-img-wrap">
-                    <img src="https://images.unsplash.com/photo-1569428034239-f9565e32e224?q=80&w=800&auto=format&fit=crop" class="card-img" alt="Fontainhas">
-                </div>
-                <div class="card-body">
-                    <span class="card-tag">Culture</span>
-                    <h3>Fontainhas</h3>
-                    <p>The Latin Quarter of Panjim. Wander through narrow winding streets lined with brightly colored colonial-style houses.</p>
-                </div>
-            </div>
-        </div>
     </section>
 
     <!-- Famous Places to Eat -->
@@ -388,7 +537,7 @@
                 <!-- Food 3 -->
                 <div class="card">
                     <div class="card-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800&auto=format&fit=crop" class="card-img" alt="Gunpowder">
+                        <img src="https://www.dineoutmagazine.co.uk/perch/resources/gunpowder-1-w1200h600.jpg" class="card-img" alt="Gunpowder">
                     </div>
                     <div class="card-body">
                         <span class="card-tag">Boutique Garden</span>
@@ -397,30 +546,395 @@
                     </div>
                 </div>
                 <!-- Food 4 -->
-                <div class="card">
-                    <div class="card-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=800&auto=format&fit=crop" class="card-img" alt="Fishermans Wharf">
-                    </div>
-                    <div class="card-body">
-                        <span class="card-tag">Seafood</span>
-                        <h3>Fisherman’s Wharf</h3>
-                        <p>Experience the riverside charm of South Goa with the freshest local catches and a classic coastal ambiance.</p>
-                    </div>
-                </div>
-            </div>
+                
         </section>
     </div>
 
-    <!-- Final Call -->
-    <section class="reveal" style="text-align: center;">
-        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Ready to Explore?</h2>
-        <p style="color: var(--secondary-text); margin-bottom: 40px;">Our premium packages for Goa start from ₹9,999.</p>
-        <a href="#" class="btn btn-primary" style="padding: 20px 60px;">Contact Concierge</a>
-    </section>
+<!-- 
+  TRANSPORT SECTION SNIPPET (Visual Edition)
+  Instructions:
+  1. Copy this block and paste it above your footer.
+  2. Ensure Font Awesome is loaded in your <head> for the icons to appear.
+-->
 
-    <footer>
-        <p style="color: var(--secondary-text); font-size: 0.9rem;">&copy; 2024 Wexplore Travel Co. · Goa Guide Edition</p>
-    </footer>
+<section id="wexplore-transport" class="reveal">
+    <style>
+        #wexplore-transport {
+            padding: 80px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .transport-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .transport-header h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin-bottom: 16px;
+            color: var(--text-color);
+        }
+
+        .transport-header p {
+            color: var(--secondary-text);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .transport-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .transport-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .transport-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--accent-color);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .transport-card:hover {
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .transport-img-wrap {
+            height: 200px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .transport-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s ease;
+        }
+
+        .transport-card:hover .transport-img {
+            transform: scale(1.1);
+        }
+
+        .transport-icon-badge {
+            position: absolute;
+            bottom: -20px;
+            right: 24px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 2;
+        }
+
+        .transport-body {
+            padding: 40px 32px 32px;
+            flex-grow: 1;
+        }
+
+        .transport-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-color);
+        }
+
+        .transport-card p {
+            font-size: 0.95rem;
+            color: var(--secondary-text);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            #wexplore-transport {
+                padding: 60px 24px;
+            }
+        }
+    </style>
+
+    <div class="transport-header">
+        <h2>How to Get Around</h2>
+        <p>Navigate the city with ease using these reliable transport options tailored for your comfort.</p>
+    </div>
+
+    <div class="transport-grid">
+        <!-- Private Cab -->
+        <div class="transport-card">
+            <div class="transport-img-wrap">
+                <img src="https://kashiyatra.in/wp-content/uploads/2023/12/swift-dzire-cab-hire-varanasi.jpg" alt="Private Cabs" class="transport-img">
+                <div class="transport-icon-badge">
+                    <i class="fa-solid fa-car-side"></i>
+                </div>
+            </div>
+            <div class="transport-body">
+                <h3>Private Cabs</h3>
+                <p>The gold standard for urban mobility. Utilize app-based services for pre-fixed fares and air-conditioned comfort, or book a private chauffeur for full-day heritage explorations.</p>
+            </div>
+        </div>
+
+        <!-- Public Bus -->
+        <div class="transport-card">
+            <div class="transport-img-wrap">
+                <img src="https://etimg.etb2bimg.com/thumb/msid-106278707,imgsize-313998,width-1200,height=627,overlay-etenergy,resizemode-75/power/delhi-green-travel-progress-2023-bus-service-becomes-app-based-metro-rail-completes-21-years.jpg" alt="Public Bus" class="transport-img">
+                <div class="transport-icon-badge">
+                    <i class="fa-solid fa-bus"></i>
+                </div>
+            </div>
+            <div class="transport-body">
+                <h3>Public Bus</h3>
+                <p>Experience the city like a local. Efficient AC bus networks connect historic districts with modern hubs, offering the most sustainable and budget-friendly way to traverse the city.</p>
+            </div>
+        </div>
+
+        <!-- Metro & Trains -->
+        <div class="transport-card">
+            <div class="transport-img-wrap">
+                <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202510/vande-bharat-express--fast-train-on-slow-track-242112698-16x9_0.jpg?VersionId=rH.MAcbqEsbVK5WzT9wgweYlb_L3Bq7M" alt="Metro and Trains" class="transport-img">
+                <div class="transport-icon-badge">
+                    <i class="fa-solid fa-train-subway"></i>
+                </div>
+            </div>
+            <div class="transport-body">
+                <h3>Metro & Trains</h3>
+                <p>Beat the peak-hour rush. Modern rapid transit systems provide lightning-fast connectivity across the city, allowing you to move between distant landmarks in record time.</p>
+            </div>
+        </div>
+    </div>
+</section>
+   
+
+<footer id="wexplore-footer">
+    <style>
+        #wexplore-footer {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 80px 24px;
+            border-top: 1px solid var(--border-color);
+            transition: all 0.5s ease;
+            text-align: left;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr 1fr;
+            gap: 60px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            letter-spacing: -0.04em;
+        }
+
+        .footer-logo i { color: var(--accent-color); }
+
+        .footer-column h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--secondary-text);
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.95rem;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .footer-membership-card {
+            background: var(--secondary-bg);
+            padding: 24px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .footer-membership-card p {
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .footer-btn-pkg {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 980px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: transform 0.3s;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-btn-pkg:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 113, 227, 0.2);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 60px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--secondary-text);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: 1.5fr 1fr 1fr;
+                gap: 40px;
+            }
+            .footer-column:last-child {
+                grid-column: span 3;
+            }
+            .footer-membership-card {
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid { 
+                grid-template-columns: 1fr 1fr; 
+                gap: 40px; 
+            }
+            .footer-column:first-child { 
+                grid-column: span 2; 
+                text-align: center; 
+            }
+            .footer-column:first-child .footer-logo { 
+                justify-content: center; 
+            }
+            .footer-column:last-child {
+                grid-column: span 2;
+                margin: 0 auto;
+            }
+            .footer-bottom { 
+                flex-direction: column; 
+                gap: 20px; 
+                text-align: center; 
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-column:first-child, .footer-column:last-child {
+                grid-column: span 1;
+            }
+        }
+    </style>
+
+    <div class="footer-grid">
+        <!-- Brand Info -->
+        <div class="footer-column">
+            <a href="index.html" class="footer-logo">
+                <img height="60px" width="50px" src="assets/images/logocm.png" alt="Logo" onerror="this.style.display='none'">
+                <span>Unseen MILES</span>
+            </a>
+            <p style="color: var(--secondary-text); font-size: 0.95rem; line-height: 1.6; margin-top: 10px;">
+                India Reimagined. Curating soulful journeys across the subcontinent for the modern, conscious explorer.
+            </p>
+        </div>
+
+        <!-- Sitemap -->
+         <div class="footer-column">
+            <h4>Destinations</h4>
+            <ul class="footer-links">
+                <li><a href="goa.html">Goa</a></li>
+                <li><a href="kolkata.html">Kolkata</a></li>
+                <li><a href="bangalore.html">Bangalore</a></li>
+                <li><a href="varanasi.html">Varanasi</a></li>
+                <li><a href="rajasthan.html">Rajasthan</a></li>
+                <li><a href="delhi.html">Delhi</a></li>
+            </ul>
+        </div>
+
+        <!-- Direct Contact -->
+        <div class="footer-column">
+            <h4>Connect</h4>
+            <ul class="footer-links">
+                <li><a href="mailto:dp2005317@gmail.com"><i class="fa-solid fa-envelope"></i> dp2005317@gmail.com</a></li>
+                <li><a href="https://wa.me/917888739942" target="_blank"><i class="fa-brands fa-whatsapp"></i> +91 78887 39942</a></li>
+            </ul>
+        </div>
+
+        <!-- Membership Action -->
+        <div class="footer-column">
+            <h4>Full Guide</h4>
+            <div class="footer-membership-card">
+                <p>Unlock exclusive itineraries, local secrets, and concierge support.</p>
+                <a href="index.html#pricing" class="footer-btn-pkg">Take Membership</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div>&copy; 2025 Unless MINDS Travel Company. All rights reserved.</div>
+        <div style="display: flex; gap: 20px;">
+            <a href="#" style="text-decoration: none; color: inherit;">Privacy</a>
+            <a href="#" style="text-decoration: none; color: inherit;">Terms</a>
+        </div>
+    </div>
+</footer>
 
     <script>
         // --- Theme Toggle ---

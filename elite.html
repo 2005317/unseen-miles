@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="assets/images/logocm.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unseen MILES Elite — The Professional Explorer's Choice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Urbanist:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            /* Sleek Elite Platinum Palette */
+            --bg-color: #ffffff;
+            --secondary-bg: #f5f5f7;
+            --text-color: #1d1d1f;
+            --secondary-text: #6e6e73;
+            --accent-color: #515154; /* Slate/Platinum */
+            --card-bg: #ffffff;
+            --border-color: rgba(0,0,0,0.1);
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --border-radius: 24px;
+            --max-width: 1200px;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #000000;
+            --secondary-bg: #1c1c1e;
+            --text-color: #f5f5f7;
+            --secondary-text: #a1a1a6;
+            --accent-color: #e5e4e2; /* Platinum */
+            --card-bg: #1c1c1e;
+            --border-color: rgba(255,255,255,0.1);
+            --glass-bg: rgba(0, 0, 0, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.5s ease;
+            overflow-x: hidden;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 64px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-content {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 10px;
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .logo i { color: var(--accent-color); }
+
+        .theme-toggle {
+            background: var(--secondary-bg);
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        /* --- Hero Section --- */
+        .membership-hero {
+            padding: 160px 24px 80px;
+            text-align: center;
+            background: radial-gradient(circle at bottom left, rgba(81, 81, 84, 0.05), transparent);
+        }
+
+        .tier-badge {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            padding: 6px 16px;
+            border-radius: 980px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+        }
+
+        .membership-hero h1 {
+            font-family: 'Urbanist', sans-serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin-bottom: 20px;
+        }
+
+        .pricing-wrap {
+            margin: 40px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .old-price {
+            font-size: 1.5rem;
+            color: var(--secondary-text);
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        .new-price {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--text-color);
+            display: flex;
+            align-items: flex-start;
+            gap: 4px;
+        }
+
+        .new-price span {
+            font-size: 1.5rem;
+            margin-top: 15px;
+        }
+
+        /* --- City Selection Grid --- */
+        .section-padding { padding: 100px 24px; }
+        .container { max-width: var(--max-width); margin: 0 auto; }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .city-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .city-card {
+            background: var(--card-bg);
+            border-radius: 28px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .city-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .city-img {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 1.2s ease;
+        }
+
+        .city-card:hover .city-img { transform: scale(1.1); }
+
+        .city-info { padding: 24px; }
+        .city-info h3 { font-size: 1.4rem; margin-bottom: 8px; }
+        .city-info p { color: var(--secondary-text); font-size: 0.95rem; }
+
+        .select-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-color);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: var(--transition);
+        }
+
+        .city-card:hover .select-indicator {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* --- Inclusions --- */
+        .bg-secondary { background: var(--secondary-bg); }
+
+        .inclusion-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .inclusion-item {
+            display: flex;
+            gap: 20px;
+        }
+
+        .inclusion-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+        }
+
+        .inclusion-text h4 { font-size: 1.1rem; margin-bottom: 8px; }
+        .inclusion-text p { color: var(--secondary-text); font-size: 0.9rem; }
+
+        /* --- Payment Banner --- */
+        .payment-banner {
+            background: var(--text-color);
+            color: var(--bg-color);
+            padding: 60px 24px;
+            text-align: center;
+            border-radius: 40px;
+            margin: 40px auto;
+            max-width: calc(var(--max-width) - 48px);
+            border: 1px solid var(--border-color);
+        }
+
+        .payment-banner h2 { font-size: 2rem; margin-bottom: 15px; }
+        .payment-banner p { opacity: 0.9; margin-bottom: 30px; }
+
+        .wa-btn-large {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #25d366;
+            color: white;
+            padding: 18px 36px;
+            border-radius: 980px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .wa-btn-large:hover { transform: scale(1.05); }
+
+        /* --- Footer --- */
+        #wexplore-footer {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 80px 24px;
+            border-top: 1px solid var(--border-color);
+            transition: all 0.5s ease;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr 1fr;
+            gap: 60px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo i { color: var(--accent-color); }
+
+        .footer-column h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--secondary-text);
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 15px; }
+        .footer-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.95rem;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .footer-membership-card {
+            background: var(--secondary-bg);
+            padding: 24px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .footer-btn-pkg {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--bg-color) !important;
+            padding: 12px 24px;
+            border-radius: 980px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: transform 0.3s;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 60px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--secondary-text);
+        }
+
+        @media (max-width: 992px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .footer-column:first-child { grid-column: span 2; }
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .footer-column:first-child { grid-column: auto; text-align: center; }
+            .footer-column:first-child .footer-logo { justify-content: center; }
+            .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <nav>
+        <div class="nav-content">
+            <a href="index.html" class="logo">
+              <img height="60px" width="50px" src="assets/images/logocm.png" alt="" onerror="this.style.display='none'">
+                <span>Unseen MILES</span>
+            </a>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fa-solid fa-moon" id="themeIcon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="membership-hero">
+        <span class="tier-badge">The Mid Tier</span>
+        <h1>Elite Edition</h1>
+        <p style="color: var(--secondary-text); font-size: 1.2rem; max-width: 650px; margin: 0 auto;">Priority support and flexible curation. The perfect balance of ease and exploration.</p>
+        
+        <div class="pricing-wrap">
+            <div class="old-price">₹89,999</div>
+            <div class="new-price"><span>₹</span>49,999</div>
+            <p style="font-weight: 700; color: var(--accent-color);">Premium Priority Activation</p>
+        </div>
+
+        <a href="#selector" class="footer-btn-pkg" style="width: auto; padding: 18px 40px; font-size: 1rem;">Unlock Elite Benefits</a>
+    </header>
+
+    <!-- City Selector -->
+    <section id="selector" class="section-padding container">
+        <div class="section-title reveal">
+            <h2>Select Your Elite Destination</h2>
+            <p>Choose your city to activate priority onboarding via our direct WhatsApp concierge.</p>
+        </div>
+
+        <div class="city-grid">
+            <!-- Goa -->
+            <div class="city-card reveal">
+                <div class="select-indicator"><i class="fa-brands fa-whatsapp"></i></div>
+                <img src="https://images.unsplash.com/photo-1512757776214-26d36777b513?q=80&w=800&auto=format&fit=crop" alt="Goa" class="city-img">
+                <div class="city-info">
+                    <h3>Goa Elite</h3>
+                    <p>Priority beach club access and curated hidden trail optimizations.</p>
+                </div>
+            </div>
+            <!-- Delhi -->
+            <div class="city-card reveal">
+                <div class="select-indicator"><i class="fa-brands fa-whatsapp"></i></div>
+                <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=800&auto=format&fit=crop" alt="Delhi" class="city-img">
+                <div class="city-info">
+                    <h3>Delhi Elite</h3>
+                    <p>Exclusive dining reservations and tailored Mughal trail maps.</p>
+                </div>
+            </div>
+            <!-- Bangalore -->
+            <div class="city-card reveal">
+                <div class="select-indicator"><i class="fa-brands fa-whatsapp"></i></div>
+                <img src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?q=80&w=800&auto=format&fit=crop" alt="Bangalore" class="city-img">
+                <div class="city-info">
+                    <h3>Bangalore Elite</h3>
+                    <p>Priority brewery seating and optimized garden city loops.</p>
+                </div>
+            </div>
+            <!-- Varanasi -->
+            <div class="city-card reveal">
+                <div class="select-indicator"><i class="fa-brands fa-whatsapp"></i></div>
+                <img src="https://i.pinimg.com/1200x/82/18/7d/82187d39f4dc4ec89ad717a05788ff58.jpg" alt="Varanasi" class="city-img">
+                <div class="city-info">
+                    <h3>Varanasi Elite</h3>
+                    <p>Preferred boat ride scheduling and spiritual trail expert access.</p>
+                </div>
+            </div>
+            <!-- Rajasthan -->
+            <div class="city-card reveal">
+                <div class="select-indicator"><i class="fa-brands fa-whatsapp"></i></div>
+                <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=800&auto=format&fit=crop" alt="Rajasthan" class="city-img">
+                <div class="city-info">
+                    <h3>Rajasthan Elite</h3>
+                    <p>Private artisan workshop access and royal haveli curation.</p>
+                </div>
+            </div>
+            <!-- Kolkata -->
+            <div class="city-card reveal">
+                <div class="select-indicator"><i class="fa-brands fa-whatsapp"></i></div>
+                <img src="https://images.unsplash.com/photo-1558431382-27e303142255?q=80&w=2000&auto=format&fit=crop" alt="Kolkata" class="city-img">
+                <div class="city-info">
+                    <h3>Kolkata Elite</h3>
+                    <p>VIP heritage walks and artistic salon introduction trails.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Banner -->
+    <section class="container reveal">
+        <div class="payment-banner">
+            <h2>Elite Support Activation</h2>
+            <p>Ready for a higher standard of travel? Connect with our team to secure your Elite membership and begin your priority onboarding.</p>
+            <a href="https://wa.me/917888739942?text=Hi%20Wexplore!%20I%20want%20to%20activate%20the%20Elite%20Membership.%20Please%20provide%20the%20payment%20details." class="wa-btn-large" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp for Elite Activation
+            </a>
+        </div>
+    </section>
+
+    <!-- Elite Inclusions -->
+    <section class="bg-secondary section-padding">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>The Elite Advantage</h2>
+                <p>Advanced features designed for those who value time and priority.</p>
+            </div>
+
+            <div class="inclusion-list">
+                <div class="inclusion-item reveal">
+                    <div class="inclusion-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="inclusion-text">
+                        <h4>Priority Support</h4>
+                        <p>Fast-track WhatsApp response for all your travel queries during your trip.</p>
+                    </div>
+                </div>
+                <div class="inclusion-item reveal">
+                    <div class="inclusion-icon"><i class="fa-solid fa-sliders"></i></div>
+                    <div class="inclusion-text">
+                        <h4>Itinerary Tweak</h4>
+                        <p>One professional personalization request to align the 5-day roadmap to your vibe.</p>
+                    </div>
+                </div>
+                <div class="inclusion-item reveal">
+                    <div class="inclusion-icon"><i class="fa-solid fa-gem"></i></div>
+                    <div class="inclusion-text">
+                        <h4>Local Gems Plus</h4>
+                        <p>An expanded directory of secret spots beyond the standard Lite guide.</p>
+                    </div>
+                </div>
+                <div class="inclusion-item reveal">
+                    <div class="inclusion-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                    <div class="inclusion-text">
+                        <h4>Reservation Help</h4>
+                        <p>Assistance with securing tables at popular heritage and modern dining spots.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="wexplore-footer">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <a href="index.html" class="footer-logo">
+                    <img height="60px" width="50px" src="assets/images/logocm.png" alt="Logo" onerror="this.style.display='none'">
+                    <span>Unseen MILES</span>
+                </a>
+                <p style="color: var(--secondary-text); font-size: 0.95rem; line-height: 1.6; margin-top: 10px;">
+                    India Reimagined. Curating soulful journeys across the subcontinent for the modern, conscious explorer.
+                </p>
+            </div>
+
+             <div class="footer-column">
+            <h4>Destinations</h4>
+            <ul class="footer-links">
+                <li><a href="goa.html">Goa</a></li>
+                <li><a href="kolkata.html">Kolkata</a></li>
+                <li><a href="bangalore.html">Bangalore</a></li>
+                <li><a href="varanasi.html">Varanasi</a></li>
+                <li><a href="rajasthan.html">Rajasthan</a></li>
+                <li><a href="delhi.html">Delhi</a></li>
+            </ul>
+        </div>
+
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <ul class="footer-links">
+                    <li><a href="mailto:dp2005317@gmail.com"><i class="fa-solid fa-envelope"></i> dp2005317@gmail.com</a></li>
+                    <li><a href="https://wa.me/917888739942" target="_blank"><i class="fa-brands fa-whatsapp"></i> +91 78887 39942</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Full Guide</h4>
+                <div class="footer-membership-card">
+                    <p style="font-size: 0.9rem; color: var(--secondary-text); margin-bottom: 16px;">Unlock priority itineraries and exclusive local secrets.</p>
+                    <a href="index.html#pricing" class="footer-btn-pkg">Explore All Packages</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div>&copy; 2024 Unseen MILES. Elite Edition.</div>
+            <div style="display: flex; gap: 20px;">
+                <a href="#" style="text-decoration: none; color: inherit;">Privacy</a>
+                <a href="#" style="text-decoration: none; color: inherit;">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle Logic
+        const themeBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        themeBtn.addEventListener('click', () => {
+            const current = document.body.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', next);
+            themeIcon.className = next === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        });
+
+        // Intersection Observer for Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Elite Card Interaction (WhatsApp Redirection)
+        document.querySelectorAll('.city-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const city = card.querySelector('h3').innerText;
+                const message = encodeURIComponent(`Hi Wexplore! I want to activate the Elite Membership for ${city}. Please share the priority payment details.`);
+                window.open(`https://wa.me/917888739942?text=${message}`, '_blank');
+            });
+        });
+    </script>
+</body>
+</html>
