@@ -97,8 +97,8 @@ app.get('/google/callback',
 
 const PORT = process.env.PORT || 5000;
 
-// Only listen if not creating a bundle for serverless (though @vercel/node handles listen automatically)
-// It is safe to keep app.listen for @vercel/node, it overrides it.
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+if (require.main === module) {
+  app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+}
 
 module.exports = app; // Export app for testing or alternative serverless wrappers
