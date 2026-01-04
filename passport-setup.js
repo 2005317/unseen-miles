@@ -2,39 +2,39 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('./models/User');
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
+passport.deserializeUser(function (id, done) {
+  User.findById(id, function (err, user) {
     done(err, user);
   });
 });
 
 passport.use(new GoogleStrategy({
-    // Get your clientID and clientSecret from https://console.developers.google.com/
-  clientID: "YOUR_CLIENT_ID",
-  clientSecret: "YOUR_CLIENT_SECRET",
-  callbackURL: "http://localhost:5000/google/callback"
+  // Get your clientID and clientSecret from https://console.developers.google.com/
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: process.env.CALLBACK_URL || "http://localhost:5000/google/callback"
 },
-function(accessToken, refreshToken, profile, done) {
+  function (accessToken, refreshToken, profile, done) {
     User.findOne({ googleId: profile.id }).then(currentUser => {
-        if(currentUser){
-            // already have the user
-            console.log('user is: ', currentUser);
-            done(null, currentUser);
-        } else {
-            // if not, create user in our db
-            new User({
-                googleId: profile.id,
-                displayName: profile.displayName,
-                email: profile.emails[0].value
-            }).save().then(newUser => {
-                console.log('new user created: ' + newUser);
-                done(null, newUser);
-            });
-        }
+      if (currentUser) {
+        // already have the user
+        console.log('user is: ', currentUser);
+        done(null, currentUser);
+      } else {
+        // if not, create user in our db
+        new User({
+          googleId: profile.id,
+          displayName: profile.displayName,
+          email: profile.emails[0].value
+        }).save().then(newUser => {
+          console.log('new user created: ' + newUser);
+          done(null, newUser);
+        });
+      }
     })
-}
+  }
 ));

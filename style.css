@@ -439,6 +439,7 @@ section {
 .btn-primary { background: var(--accent-color); color: white; }
 .btn-secondary { background: rgba(0,0,0,0.05); color: var(--text-color); }
 .btn-glass { background: rgba(255,255,255,0.2);margin: 30px; backdrop-filter: blur(10px); color: white; border: 1px solid rgba(255,255,255,0.2); }
+.btn-glass-login { padding: 10px 26px; background: rgba(255, 128, 0, 0.697);margin: 1px; backdrop-filter: blur(10px); color: rgb(255, 255, 255); border: 0px solid rgba(255,255,255,0.2); }
 .btn-choose-lite {
     width: 100%;
     border-radius: 15px;

@@ -8,7 +8,7 @@ require('./passport-setup');
 const app = express();
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/codemittens')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/codemittens')
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 
@@ -18,7 +18,7 @@ app.use(express.json());
 
 // Express session
 app.use(session({
-  secret: 'secret',
+  secret: process.env.SESSION_SECRET || 'secret',
   resave: false,
   saveUninitialized: false
 }));
