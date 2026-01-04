@@ -1,4 +1,5 @@
 console.log('Server script starting...');
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -32,27 +33,27 @@ app.use(express.static(__dirname));
 
 // Routes
 app.get('/', (req, res) => {
-    if (req.isAuthenticated()) {
-        res.redirect('/good');
-    } else {
-        res.sendFile(__dirname + '/login.html');
-    }
+  if (req.isAuthenticated()) {
+    res.redirect('/good');
+  } else {
+    res.sendFile(__dirname + '/login.html');
+  }
 });
 app.get('/failed', (req, res) => res.send('Failed to log in'));
 app.get('/good', (req, res) => {
-    if (req.isAuthenticated()) {
-        res.send(`Welcome ${req.user.displayName}!`);
-    } else {
-        res.redirect('/');
-    }
+  if (req.isAuthenticated()) {
+    res.send(`Welcome ${req.user.displayName}!`);
+  } else {
+    res.redirect('/');
+  }
 });
 
 app.get('/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-app.get('/google/callback', 
+app.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/failed' }),
-  function(req, res) {
+  function (req, res) {
     // Successful authentication, redirect home.
     res.redirect('/good');
   }
